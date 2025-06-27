@@ -7,10 +7,15 @@ let inputpais = document.getElementById("mensajePais");
 let inputgenero = document.getElementById("mensajeGenero");
 let inputcolor = document.getElementById("mensajeColor");
 let inputsatisfaccion = document.getElementById("mensajeSatisfaccion");
+let inputpassword = document.getElementById("mensajePassword");
+let inputhora = document.getElementById("mensajeHora");
+let inputarchivo = document.getElementById("mensajeArchivo");
+let inputweb = document.getElementById("mensajeWeb");
+let inputpreferencias = document.getElementById("mensajePreferencias");
+let inputciudad = document.getElementById("mensajeCiudad");
 
 function validarNombre(arg) {
-    let nombre = arg.value;
-    if (nombre === "") {
+    if (arg.value.trim() === "") {
         inputnombre.textContent = "El nombre es obligatorio.";
         inputnombre.style.color = "red";
     } else {
@@ -19,10 +24,19 @@ function validarNombre(arg) {
     }
 }
 
+function validarPassword(arg) {
+    if (arg.value.length < 6) {
+        inputpassword.textContent = "La contraseña debe tener al menos 6 caracteres.";
+        inputpassword.style.color = "red";
+    } else {
+        inputpassword.textContent = "Contraseña válida.";
+        inputpassword.style.color = "green";
+    }
+}
+
 function validarIdentificacion(arg) {
-    let id= arg.value;
-    if (id.length < 10 || isNaN(id)) {
-        inputidentificacion.textContent = "Debe tener al menos 10 dígitos numéricos.";
+    if (arg.value.length < 10) {
+        inputidentificacion.textContent = "Debe tener al menos 10 dígitos.";
         inputidentificacion.style.color = "red";
     } else {
         inputidentificacion.textContent = "Identificación válida.";
@@ -31,20 +45,8 @@ function validarIdentificacion(arg) {
 }
 
 function validarFechaNacimiento(arg) {
-    let fecha = arg.value;
-    inputfechaNacimiento = document.getElementById("mensajeFechaNacimiento");
-    if (fecha === "") {
-        inputfechaNacimiento.textContent = "Seleccione una fecha válida.";
-        inputfechaNacimiento.style.color = "red";
-        return;
-    }
-
-    const fechaSeleccionada = new Date(fecha);
-    const fechaMin = new Date("1980-01-01");
-    const fechaMax = new Date("2007-12-31");
-
-    if (fechaSeleccionada < fechaMin || fechaSeleccionada > fechaMax) {
-        inputfechaNacimiento.textContent = "La fecha debe estar entre 1980 y 2007.";
+    if (arg.value === "") {
+        inputfechaNacimiento.textContent = "Seleccione una fecha.";
         inputfechaNacimiento.style.color = "red";
     } else {
         inputfechaNacimiento.textContent = "Fecha válida.";
@@ -52,93 +54,40 @@ function validarFechaNacimiento(arg) {
     }
 }
 
+function validarHora(arg) {
+    if (arg.value === "") {
+        inputhora.textContent = "Ingrese una hora.";
+        inputhora.style.color = "red";
+    } else {
+        inputhora.textContent = "Hora válida.";
+        inputhora.style.color = "green";
+    }
+}
 
-function validarCorreo(input) {
-    let correo = input.value;
-    if (!correo.includes("@") || !correo.includes(".")) {
+function validarArchivo(arg) {
+    if (!arg.value) {
+        inputarchivo.textContent = "Debe seleccionar un archivo.";
+        inputarchivo.style.color = "red";
+    } else {
+        inputarchivo.textContent = "Archivo seleccionado.";
+        inputarchivo.style.color = "green";
+    }
+}
+
+function validarCorreo(arg) {
+    if (arg.value.includes("@") && arg.value.includes(".")) {
+        inputcorreo.textContent = "Correo válido.";
+        inputcorreo.style.color = "green";
+    } else {
         inputcorreo.textContent = "Correo no válido.";
         inputcorreo.style.color = "red";
-    } else {
-        inputcorreo.textContent = "Correo correto";
-        inputcorreo.style.color = "green";
     }
 }
 
-function validarGenero(arg) {
-    let generoSeleccionado = arg.value;
-    if (generoSeleccionado) {
-        inputgenero.textContent = `Género seleccionado: ${generoSeleccionado}`;
-        inputgenero.style.color = "green";
-    } else {
-        inputgenero.textContent = "Debe seleccionar un género.";
-        inputgenero.style.color = "red";
-    }
-}
-
-
-
-function validarPais(select) {
-    const valor = select.value;
-    
-    if (valor === "") {
-        inputpais.textContent = "Debe seleccionar un país.";
-        inputpais.style.color = "red";
-    } else {
-        inputpais.textContent = `País seleccionado: ${valor}`;
-        inputpais.style.color = "green";
-    }
-}
-
-function validarDireccion(textarea) {
-    if (textarea.value.trim() === "") {
-        inputdireccion.textContent = "La dirección no puede estar vacía.";
-        inputdireccion.style.color = "red";
-    } else {
-        inputdireccion.textContent = "De acuerdo a la dirección proporcionada, se aplicarán las normativas locales.";
-        inputdireccion.style.color = "green";
-    }
-}
-
-function validarColor(input) {
-    let color = input.value;
-    if (color) {
-        inputcolor.textContent = `Color seleccionado: <span style="color:${color}">${color}</span>`;
-        inputcolor.style.color = "green";
-    } else {
-        inputcolor.textContent = "Debe seleccionar un color.";
-        inputcolor.style.color = "red";
-    }
-}
-
-function validarSatisfaccion(input) {
-    let satisfaccion = input.value;
-    if (satisfaccion) {
-        inputsatisfaccion.textContent = `Nivel seleccionado: ${satisfaccion}/5`;
-        inputsatisfaccion.style.color = "green";
-    } else {
-        inputsatisfaccion.textContent = "Debe seleccionar un nivel de satisfacción.";
-        inputsatisfaccion.style.color = "red";
-    }
-}
-
-function validarTelefono(input) {
-    let telefono = input.value;
-    let mensaje = document.getElementById("mensajeTelefono");
-
-    if (!/^\d{10}$/.test(telefono)) {
-        mensaje.textContent = "Número de teléfono no válido.";
-        mensaje.style.color = "red";
-    } else {
-        mensaje.textContent = "Número de teléfono válido.";
-        mensaje.style.color = "green";
-    }
-}
-
-function validarEdad(input) {
-    let edad = input.value;
+function validarEdad(arg) {
+    let edad = parseInt(arg.value);
     let mensaje = document.getElementById("mensajeEdad");
-
-    if (edad < 18 || edad > 55) {
+    if (isNaN(edad) || edad < 18 || edad > 55) {
         mensaje.textContent = "Edad no válida. Debe estar entre 18 y 55 años.";
         mensaje.style.color = "red";
     } else {
@@ -147,28 +96,136 @@ function validarEdad(input) {
     }
 }
 
+function validarTelefono(arg) {
+    let mensaje = document.getElementById("mensajeTelefono");
+    if (/^\d{10}$/.test(arg.value)) {
+        mensaje.textContent = "Teléfono válido.";
+        mensaje.style.color = "green";
+    } else {
+        mensaje.textContent = "Teléfono no válido.";
+        mensaje.style.color = "red";
+    }
+}
 
-//la funcion debe tener if y else si todo esta correcto
-//la funcion debe tener un mensaje de exito o error
+function validarWeb(arg) {
+    if (arg.value.startsWith("http")) {
+        inputweb.textContent = "URL válida.";
+        inputweb.style.color = "green";
+    } else {
+        inputweb.textContent = "URL no válida.";
+        inputweb.style.color = "red";
+    }
+}
+
+function validarGenero(arg) {
+    if (arg && arg.checked) {
+        inputgenero.textContent = "Género seleccionado.";
+        inputgenero.style.color = "green";
+    } else {
+        inputgenero.textContent = "Debe seleccionar un género.";
+        inputgenero.style.color = "red";
+    }
+}
+
+function validarPais(arg) {
+    if (arg && arg.checked) {
+        inputpais.textContent = "País seleccionado.";
+        inputpais.style.color = "green";
+    } else {
+        inputpais.textContent = "Debe seleccionar un país.";
+        inputpais.style.color = "red";
+    }
+}
+
+function validarPreferencias() {
+    let checks = document.querySelectorAll('input[name="preferencias"]:checked');
+    if (checks.length > 0) {
+        inputpreferencias.textContent = "Preferencias seleccionadas.";
+        inputpreferencias.style.color = "green";
+    } else {
+        inputpreferencias.textContent = "Seleccione al menos una preferencia.";
+        inputpreferencias.style.color = "red";
+    }
+}
+
+function validarCiudad(arg) {
+    if (arg.value === "") {
+        inputciudad.textContent = "Seleccione una ciudad.";
+        inputciudad.style.color = "red";
+    } else {
+        inputciudad.textContent = "Ciudad seleccionada.";
+        inputciudad.style.color = "green";
+    }
+}
+
+function validarDireccion(arg) {
+    if (arg.value.trim() === "") {
+        inputdireccion.textContent = "La dirección no puede estar vacía.";
+        inputdireccion.style.color = "red";
+    } else {
+        inputdireccion.textContent = "Dirección válida.";
+        inputdireccion.style.color = "green";
+    }
+}
+
+function validarColor(arg) {
+    if (arg.value) {
+        inputcolor.textContent = "Color seleccionado.";
+        inputcolor.style.color = "green";
+    } else {
+        inputcolor.textContent = "Seleccione un color.";
+        inputcolor.style.color = "red";
+    }
+}
+
+function validarSatisfaccion(arg) {
+    if (arg.value) {
+        inputsatisfaccion.textContent = "Nivel seleccionado: " + arg.value;
+        inputsatisfaccion.style.color = "green";
+    } else {
+        inputsatisfaccion.textContent = "Seleccione un nivel.";
+        inputsatisfaccion.style.color = "red";
+    }
+}
 
 function validarFormulario(event) {
-    event.preventDefault(); // Evita el envío del formulario para validar los campos
+    event.preventDefault();
 
     validarNombre(document.getElementById("nombre"));
+    validarPassword(document.getElementById("password"));
     validarIdentificacion(document.getElementById("identificacion"));
     validarFechaNacimiento(document.getElementById("fechaNacimiento"));
+    validarHora(document.getElementById("horaRegistro"));
+    validarArchivo(document.getElementById("archivo"));
     validarCorreo(document.getElementById("correo"));
-    validarDireccion(document.getElementById("direccion"));
-    validarPais(document.querySelector('input[name="pais"]:checked'));
+    validarEdad(document.getElementById("edad"));
+    validarTelefono(document.getElementById("telefono"));
+    validarWeb(document.getElementById("web"));
     validarGenero(document.querySelector('input[name="genero"]:checked'));
+    validarPais(document.querySelector('input[name="pais"]:checked'));
+    validarPreferencias();
+    validarCiudad(document.getElementById("ciudad"));
+    validarDireccion(document.getElementById("direccion"));
     validarColor(document.getElementById("color"));
     validarSatisfaccion(document.getElementById("satisfaccion"));
-    validarTelefono(document.getElementById("telefono"));
-    validarEdad(document.getElementById("edad"));
 
     let mensajeFormulario = document.getElementById("mensajeFormulario");
-    mensajeFormulario.textContent = "Formulario validado correctamente.";
-    mensajeFormulario.style.color = "green";
+    let errores = document.querySelectorAll('p[style*="red"]');
+    if (errores.length === 0) {
+        mensajeFormulario.textContent = "Formulario validado correctamente.";
+        mensajeFormulario.style.color = "green";
+    } else {
+        mensajeFormulario.textContent = "Por favor, corrija los errores en el formulario.";
+        mensajeFormulario.style.color = "red";
+    }
+}
 
-
+function validarBoton(event) {
+    let mensajeFormulario = document.getElementById("mensajeFormulario");
+    if (true) {
+        mensajeFormulario.textContent = "Botón Validar presionado.";
+        mensajeFormulario.style.color = "blue";
+    } else {
+        mensajeFormulario.textContent = "";
+    }
 }

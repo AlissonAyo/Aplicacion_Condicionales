@@ -11,21 +11,33 @@
 
 <body>
     <h1>REGISTROS DE USUARIOS</h1>
-    <form action="" id="formulario">
+    <form action="" id="formulario"
+        onsubmit="validarFormulario(event)"
+        onreset="validarReset(event)"
+        oninput="validarOnInput(event)"
+        onchange="validarOnChange(event)">
         <div class="form-section">
             <h3>Nombres</h3>
             <label for="nombre">Ingrese el nombre completo:</label>
             <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre Completo"
-                onkeypress="validarNombre(this)" onkeyup="validarNombre(this)" />
+                oninput="validarNombre(this)" onfocus="validarNombre(this)" onblur="validarNombre(this)"
+                onkeydown="validarNombre(this)" onkeyup="validarNombre(this)" onkeypress="validarNombre(this)" onchange="validarNombre(this)" />
             <p id="mensajeNombre"></p>
+        </div>
+
+        <div class="form-section">
+            <h3>Contraseña</h3>
+            <label for="password">Ingrese su contraseña:</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña"
+                onkeypress="validarPassword(this)" onkeyup="validarPassword(this)" onchange="validarPassword(this)" />
+            <p id="mensajePassword"></p>
         </div>
 
         <div class="form-section">
             <h3>Número de Identificación</h3>
             <label for="identificacion">Ingrese el número de identificación:</label>
-            <input type="text" class="form-control" id="identificacion" name="identificacion"
-                placeholder="Número de Identificación" onkeypress="validarIdentificacion(this)"
-                onkeyup="validarIdentificacion(this)" />
+            <input type="number" class="form-control" id="identificacion" name="identificacion"
+                placeholder="Número de Identificación" oninput="validarIdentificacion(this)" onchange="validarIdentificacion(this)" onkeyup="validarIdentificacion(this)" />
             <p id="mensajeIdentificacion"></p>
         </div>
 
@@ -33,15 +45,31 @@
             <h3>Fecha de Nacimiento</h3>
             <label for="fechaNacimiento">Ingrese su fecha de nacimiento:</label>
             <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" min="1980-01-01" max="2007-12-31"
-                onchange="validarFechaNacimiento(this)" onkeyup="validarFechaNacimiento(this)" />
+                onchange="validarFechaNacimiento(this)" onblur="validarFechaNacimiento(this)" onfocus="validarFechaNacimiento(this)" />
             <p id="mensajeFechaNacimiento"></p>
+        </div>
+
+        <div class="form-section">
+            <h3>Hora de Registro</h3>
+            <label for="horaRegistro">Ingrese la hora de registro:</label>
+            <input type="time" class="form-control" id="horaRegistro" name="horaRegistro"
+                onchange="validarHora(this)" onblur="validarHora(this)" />
+            <p id="mensajeHora"></p>
+        </div>
+
+        <div class="form-section">
+            <h3>Archivo</h3>
+            <label for="archivo">Suba un archivo:</label>
+            <input type="file" class="form-control" id="archivo" name="archivo"
+                onchange="validarArchivo(this)" onclick="validarArchivo(this)" onblur="validarArchivo(this)" />
+            <p id="mensajeArchivo"></p>
         </div>
 
         <div class="form-section">
             <h3>Correo</h3>
             <label for="correo">Ingrese su correo electrónico:</label>
             <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo Electrónico"
-                onkeypress="validarCorreo(this)" onkeyup="validarCorreo(this)" />
+                oninput="validarCorreo(this)" onchange="validarCorreo(this)" onblur="validarCorreo(this)" />
             <p id="mensajeCorreo"></p>
         </div>
 
@@ -49,16 +77,24 @@
             <h3>Edad</h3>
             <label for="edad">Ingrese su edad:</label>
             <input type="number" class="form-control" id="edad" name="edad" placeholder="Edad"
-                onchange="validarEdad(this)" onkeyup="validarEdad(this)" />
+                oninput="validarEdad(this)" onchange="validarEdad(this)" onkeyup="validarEdad(this)" />
             <p id="mensajeEdad"></p>
         </div>
 
         <div class="form-section">
             <h3>Teléfono</h3>
             <label for="telefono">Ingrese su número de teléfono:</label>
-            <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Número de Teléfono"
-                onchange="validarTelefono(this)" onkeyup="validarTelefono(this)" />
+            <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Número de Teléfono"
+                oninput="validarTelefono(this)" onkeyup="validarTelefono(this)" />
             <p id="mensajeTelefono"></p>
+        </div>
+
+        <div class="form-section">
+            <h3>Dirección Web</h3>
+            <label for="web">Ingrese su sitio web:</label>
+            <input type="url" class="form-control" id="web" name="web" placeholder="https://ejemplo.com"
+                oninput="validarWeb(this)" onblur="validarWeb(this)" />
+            <p id="mensajeWeb"></p>
         </div>
 
         <div class="form-section">
@@ -66,12 +102,12 @@
             <label>Seleccione su género:</label><br />
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" id="masculino" name="genero" value="masculino"
-                    onclick="validarGenero(this)" />
+                    onclick="validarGenero(this)" onchange="validarGenero(this)" />
                 <label class="form-check-label" for="masculino">Masculino</label>
             </div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" id="femenino" name="genero" value="femenino"
-                    onclick="validarGenero(this)" />
+                    onclick="validarGenero(this)" onchange="validarGenero(this)" />
                 <label class="form-check-label" for="femenino">Femenino</label>
             </div>
             <p id="mensajeGenero"></p>
@@ -82,38 +118,73 @@
             <label>Seleccione su país:</label><br />
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" id="pais_ec" name="pais" value="ecuador"
-                    onclick="validarPais(this)">
+                    onclick="validarPais(this)" onchange="validarPais(this)">
                 <label class="form-check-label" for="pais_ec">Ecuador</label>
             </div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" id="pais_pe" name="pais" value="peru"
-                    onclick="validarPais(this)">
+                    onclick="validarPais(this)" onchange="validarPais(this)">
                 <label class="form-check-label" for="pais_pe">Perú</label>
             </div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" id="pais_co" name="pais" value="colombia"
-                    onclick="validarPais(this)">
+                    onclick="validarPais(this)" onchange="validarPais(this)">
                 <label class="form-check-label" for="pais_co">Colombia</label>
             </div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" id="pais_ar" name="pais" value="argentina"
-                    onclick="validarPais(this)">
+                    onclick="validarPais(this)" onchange="validarPais(this)">
                 <label class="form-check-label" for="pais_ar">Argentina</label>
             </div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" id="pais_mx" name="pais" value="mexico"
-                    onclick="validarPais(this)">
+                    onclick="validarPais(this)" onchange="validarPais(this)">
                 <label class="form-check-label" for="pais_mx">México</label>
             </div>
             <p id="mensajePais"></p>
         </div>
 
+        <div class="form-section">
+            <h3>Preferencias</h3>
+            <label>Seleccione sus preferencias:</label><br />
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="pref1" name="preferencias" value="noticias"
+                    onclick="validarPreferencias(this)" onchange="validarPreferencias(this)">
+                <label class="form-check-label" for="pref1">Noticias</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="pref2" name="preferencias" value="ofertas"
+                    onclick="validarPreferencias(this)" onchange="validarPreferencias(this)">
+                <label class="form-check-label" for="pref2">Ofertas</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="pref3" name="preferencias" value="eventos"
+                    onclick="validarPreferencias(this)" onchange="validarPreferencias(this)">
+                <label class="form-check-label" for="pref3">Eventos</label>
+            </div>
+            <p id="mensajePreferencias"></p>
+        </div>
+
+        <div class="form-section">
+            <h3>Ciudad</h3>
+            <label for="ciudad">Seleccione su ciudad:</label>
+            <select class="form-select" id="ciudad" name="ciudad"
+                onchange="validarCiudad(this)" onclick="validarCiudad(this)" onfocus="validarCiudad(this)" onblur="validarCiudad(this)">
+                <option value="">Seleccione...</option>
+                <option value="quito">Quito</option>
+                <option value="lima">Lima</option>
+                <option value="bogota">Bogotá</option>
+                <option value="buenosaires">Buenos Aires</option>
+                <option value="cdmx">Ciudad de México</option>
+            </select>
+            <p id="mensajeCiudad"></p>
+        </div>
 
         <div class="form-section">
             <h3>Dirección</h3>
             <label for="direccion">Ingrese su dirección:</label>
             <textarea class="form-control" id="direccion" name="direccion" rows="3"
-                oninput="validarDireccion(this)"></textarea>
+                oninput="validarDireccion(this)" onkeyup="validarDireccion(this)" onfocus="validarDireccion(this)" onblur="validarDireccion(this)"></textarea>
             <p id="mensajeDireccion"></p>
         </div>
 
@@ -121,7 +192,7 @@
             <h3>Color Favorito</h3>
             <label for="color">Elige tu color favorito:</label><br />
             <input type="color" id="color" name="color" class="form-control form-control-color"
-                oninput="validarColor(this)" />
+                oninput="validarColor(this)" onchange="validarColor(this)" />
             <p id="mensajeColor"></p>
         </div>
 
@@ -129,18 +200,18 @@
             <h3>Satisfacción</h3>
             <label for="satisfaccion">¿Cómo calificarías tu experiencia?</label>
             <input type="range" class="form-range" id="satisfaccion" name="satisfaccion" min="1" max="5"
-                oninput="validarSatisfaccion(this)" />
+                oninput="validarSatisfaccion(this)" onchange="validarSatisfaccion(this)" />
             <p id="mensajeSatisfaccion"></p>
         </div>
 
         <div class="text-center mt-4">
-            <button type="submit" class="boton px-4" onclick="validarFormulario(event)">Enviar</button>
+            <button type="button" class="boton px-4"
+                onclick="validarBoton(event)" onmouseover="botonMouseOver(event)" onmouseout="botonMouseOut(event)" onmouseup="botonMouseUp(event)" onmousedown="botonMouseDown(event)" onfocus="botonFocus(event)">Validar</button>
+            <button type="submit" class="boton px-4"
+                onclick="validarFormulario(event)" onsubmit="validarFormulario(event)" onmouseover="submitMouseOver(event)">Enviar</button>
             <p id="mensajeFormulario"></p>
         </div>
-
-
     </form>
-
 
     <script src="./public/lib/bootstrap-5.3.5-dist/js/bootstrap.min.js"></script>
     <script src="./public/js/if_else.js"></script>
