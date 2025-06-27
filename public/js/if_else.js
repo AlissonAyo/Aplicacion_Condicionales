@@ -229,3 +229,37 @@ function validarBoton(event) {
         mensajeFormulario.textContent = "";
     }
 }
+
+function validarReset(event) {
+    // Limpia todos los mensajes de validación
+    let mensajes = document.querySelectorAll('p[id^="mensaje"]');
+    mensajes.forEach(function(p) {
+        p.textContent = "";
+        p.style.color = "";
+    });
+    // Limpia el mensaje general del formulario
+    let mensajeFormulario = document.getElementById("mensajeFormulario");
+    if (mensajeFormulario) {
+        mensajeFormulario.textContent = "Formulario reiniciado.";
+        mensajeFormulario.style.color = "orange";
+    }
+}
+
+function botonMouseOver(event) {
+    event.target.style.backgroundColor = "#e0e0e0";
+}
+function botonMouseOut(event) {
+    event.target.style.backgroundColor = "";
+}
+function botonMouseUp(event) {
+    event.target.style.transform = "scale(1)";
+}
+function botonMouseDown(event) {
+    event.target.style.transform = "scale(0.95)";
+}
+function botonFocus(event) {
+    event.target.style.outline = "2px solid #007bff";
+}
+function submitMouseOver(event) {
+    event.target.style.backgroundColor = "#d1ffd1";
+}
