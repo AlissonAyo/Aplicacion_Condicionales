@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>if - else</title>
+    <link rel="stylesheet" href="./public/lib/bootstrap-5.3.5-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./public/css/estilos.css">
+</head>
+
+<body>
+    <h1>REGISTROS DE USUARIOS</h1>
+    <form action="" id="formulario">
+        <div class="form-section">
+            <h3>Nombres</h3>
+            <label for="nombre">Ingrese el nombre completo:</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre Completo"
+                onkeypress="validarNombre(this)" onkeyup="validarNombre(this)" />
+            <p id="mensajeNombre"></p>
+        </div>
+
+        <div class="form-section">
+            <h3>Número de Identificación</h3>
+            <label for="identificacion">Ingrese el número de identificación:</label>
+            <input type="text" class="form-control" id="identificacion" name="identificacion"
+                placeholder="Número de Identificación" onkeypress="validarIdentificacion(this)"
+                onkeyup="validarIdentificacion(this)" />
+            <p id="mensajeIdentificacion"></p>
+        </div>
+
+        <div class="form-section">
+            <h3>Fecha de Nacimiento</h3>
+            <label for="fechaNacimiento">Ingrese su fecha de nacimiento:</label>
+            <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" min="1980-01-01" max="2007-12-31"
+                onchange="validarFechaNacimiento(this)" onkeyup="validarFechaNacimiento(this)" />
+            <p id="mensajeFechaNacimiento"></p>
+        </div>
+
+        <div class="form-section">
+            <h3>Correo</h3>
+            <label for="correo">Ingrese su correo electrónico:</label>
+            <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo Electrónico"
+                onkeypress="validarCorreo(this)" onkeyup="validarCorreo(this)" />
+            <p id="mensajeCorreo"></p>
+        </div>
+
+        <div class="form-section">
+            <h3>Edad</h3>
+            <label for="edad">Ingrese su edad:</label>
+            <input type="number" class="form-control" id="edad" name="edad" placeholder="Edad"
+                onchange="validarEdad(this)" onkeyup="validarEdad(this)" />
+            <p id="mensajeEdad"></p>
+        </div>
+
+        <div class="form-section">
+            <h3>Teléfono</h3>
+            <label for="telefono">Ingrese su número de teléfono:</label>
+            <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Número de Teléfono"
+                onchange="validarTelefono(this)" onkeyup="validarTelefono(this)" />
+            <p id="mensajeTelefono"></p>
+        </div>
+
+        <div class="form-section">
+            <h3>Género</h3>
+            <label>Seleccione su género:</label><br />
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="masculino" name="genero" value="masculino"
+                    onclick="validarGenero(this)" />
+                <label class="form-check-label" for="masculino">Masculino</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="femenino" name="genero" value="femenino"
+                    onclick="validarGenero(this)" />
+                <label class="form-check-label" for="femenino">Femenino</label>
+            </div>
+            <p id="mensajeGenero"></p>
+        </div>
+
+        <div class="form-section">
+            <h3>País</h3>
+            <label>Seleccione su país:</label><br />
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="pais_ec" name="pais" value="ecuador"
+                    onclick="validarPais(this)">
+                <label class="form-check-label" for="pais_ec">Ecuador</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="pais_pe" name="pais" value="peru"
+                    onclick="validarPais(this)">
+                <label class="form-check-label" for="pais_pe">Perú</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="pais_co" name="pais" value="colombia"
+                    onclick="validarPais(this)">
+                <label class="form-check-label" for="pais_co">Colombia</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="pais_ar" name="pais" value="argentina"
+                    onclick="validarPais(this)">
+                <label class="form-check-label" for="pais_ar">Argentina</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="pais_mx" name="pais" value="mexico"
+                    onclick="validarPais(this)">
+                <label class="form-check-label" for="pais_mx">México</label>
+            </div>
+            <p id="mensajePais"></p>
+        </div>
+
+
+        <div class="form-section">
+            <h3>Dirección</h3>
+            <label for="direccion">Ingrese su dirección:</label>
+            <textarea class="form-control" id="direccion" name="direccion" rows="3"
+                oninput="validarDireccion(this)"></textarea>
+            <p id="mensajeDireccion"></p>
+        </div>
+
+        <div class="form-section">
+            <h3>Color Favorito</h3>
+            <label for="color">Elige tu color favorito:</label><br />
+            <input type="color" id="color" name="color" class="form-control form-control-color"
+                oninput="validarColor(this)" />
+            <p id="mensajeColor"></p>
+        </div>
+
+        <div class="form-section">
+            <h3>Satisfacción</h3>
+            <label for="satisfaccion">¿Cómo calificarías tu experiencia?</label>
+            <input type="range" class="form-range" id="satisfaccion" name="satisfaccion" min="1" max="5"
+                oninput="validarSatisfaccion(this)" />
+            <p id="mensajeSatisfaccion"></p>
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="submit" class="boton px-4" onclick="validarFormulario(event)">Enviar</button>
+            <p id="mensajeFormulario"></p>
+        </div>
+
+
+    </form>
+
+
+    <script src="./public/lib/bootstrap-5.3.5-dist/js/bootstrap.min.js"></script>
+    <script src="./public/js/if_else.js"></script>
+</body>
+
+</html>
